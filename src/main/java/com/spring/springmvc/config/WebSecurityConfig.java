@@ -14,6 +14,9 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private final String QUERY = "SELECT username, password, active " +
+            "FROM users " +
+            "WHERE username = ?";
 
     @Autowired
     private DataSource dataSource;
@@ -38,11 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("SELECT username, password, active " +
-                        "FROM users " +
-                        "WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, password, active " +
-                        "FROM users " +
-                        "WHERE username = ?");
+                .usersByUsernameQuery(QUERY)
+                .authoritiesByUsernameQuery(QUERY);
     }
 }
