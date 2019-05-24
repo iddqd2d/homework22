@@ -14,7 +14,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-@EntityListeners(value = ProjectListener.class)
 @Table(name = "users")
 public class User extends MappedEntity {
 
@@ -23,7 +22,4 @@ public class User extends MappedEntity {
 
     @Column
     private String password;
-
-    @Column
-    private boolean active;
 }
