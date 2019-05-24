@@ -29,6 +29,5 @@ public class UserController {
     public String addUser(User user) {
         service.createUser(user);
         return "redirect:/home";
-
     }
 }
